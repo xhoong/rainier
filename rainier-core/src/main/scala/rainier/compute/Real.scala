@@ -69,6 +69,21 @@ object Real {
     loop(real, Set.empty)
   }
 
+  def substituteVariable(x: Real, f: Variable => Real): Real = x match {
+    case v: Variable => f(v)
+    case c: Constant => c
+    case b: BinaryReal =>
+      BinaryReal(substituteVariable(b.left, f),
+                 substituteVariable(b.right, f),
+                 b.op)
+    case u: UnaryReal =>
+      UnaryReal(substituteVariable(u.original, f), u.op)
+    case If(test, nz, z) =>
+      If(substituteVariable(test, f),
+         substituteVariable(nz, f),
+         substituteVariable(z, f))
+  }
+
   def print(real: Real, depth: Int = 0): Unit = {
     val padding = "  " * depth
     real match {
