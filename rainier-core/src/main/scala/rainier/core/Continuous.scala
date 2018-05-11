@@ -13,7 +13,9 @@ trait Continuous extends Distribution[Double] { self =>
   def translate(b: Real): Continuous = Translate(b).transform(this)
   def exp: Continuous = Exp.transform(this)
 
-  private[rainier] def realLogDensity(real: Real): Real
+  //making this public for now but please advise if there is another option :)
+  //private[rainier] def realLogDensity(real: Real): Real
+  def realLogDensity(real: Real): Real
 }
 
 trait LocationScaleFamily { self =>
