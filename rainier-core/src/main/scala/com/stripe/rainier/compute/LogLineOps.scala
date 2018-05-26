@@ -1,6 +1,5 @@
 package com.stripe.rainier.compute
 
-import com.stripe.rainier.unused
 import scala.annotation.tailrec
 
 private[compute] object LogLineOps {
@@ -22,7 +21,7 @@ private[compute] object LogLineOps {
   Currently this is just a placeholder - there are no optimizations that
   seem definitely worth doing.
    */
-  def log(@unused line: LogLine): Option[Real] = None
+  def log(line: LogLine): Option[Real] = None
 
   /*
   If possible, return a representation of ax as a list of terms to be summed. Within limits, it's helpful here

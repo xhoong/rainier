@@ -67,4 +67,19 @@ object Sampleable {
       def get(value: (A, X))(implicit r: RNG, n: Numeric[Real]): (B, Y) =
         (ab.get(value._1), xy.get(value._2))
     }
+
+  implicit def seq[S, T](
+      implicit v: Sampleable[S, T]): Sampleable[Seq[S], Seq[T]] =
+    new Sampleable[Seq[S], Seq[T]] {
+      def requirements(value: Seq[S]): Set[Real] =
+        value
+          .map { s =>
+            v.requirements(s)
+          }
+          .reduce(_ ++ _)
+      def get(value: Seq[S])(implicit r: RNG, n: Numeric[Real]): Seq[T] =
+        value.map { s =>
+          v.get(s)
+        }
+    }
 }

@@ -136,7 +136,7 @@ private class LeapFrog(
     var i = nVars
     val j = nVars * 2
     while (i < j) {
-      array(i) = rng.standardNormal
+      array(i) = rng.standardUniform * 4 - 2 //(-2,2)
       i += 1
     }
     HParams(initialHalfThenFullStep(array)).nextIteration(0.0)

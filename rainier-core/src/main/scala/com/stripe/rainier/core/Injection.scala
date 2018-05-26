@@ -1,13 +1,12 @@
 package com.stripe.rainier.core
 
 import com.stripe.rainier.compute._
-import com.stripe.rainier.unused
 
 trait Injection { self =>
 
   def forwards(x: Real): Real
   def backwards(y: Real): Real
-  def isDefinedAt(@unused y: Real): Real = Real.one
+  def isDefinedAt(y: Real): Real = Real.one
   def requirements: Set[Real]
 
   /*

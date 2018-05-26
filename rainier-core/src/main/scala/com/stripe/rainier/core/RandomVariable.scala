@@ -3,7 +3,7 @@ package com.stripe.rainier.core
 import com.stripe.rainier.compute._
 import com.stripe.rainier.sampler._
 
-class RandomVariable[+T](private val value: T,
+class RandomVariable[+T](val value: T,
                          private val densities: Set[RandomVariable.BoxedReal]) {
 
   def flatMap[U](fn: T => RandomVariable[U]): RandomVariable[U] = {
